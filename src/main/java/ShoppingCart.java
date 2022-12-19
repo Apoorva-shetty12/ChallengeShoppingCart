@@ -23,20 +23,20 @@ public class ShoppingCart {
                 case "APPLE" -> {
                     System.out.println("Enter quantity of Apple, eg:1");
                     double quantity1 = scanner.nextDouble();
-                    Item item1 = new Item("APPLE", quantity1, 100);
-                    items.add(item1);
+                    Item apple = new Item("APPLE", quantity1, 100);
+                    items.add(apple);
                 }
                 case "MILK" -> {
                     System.out.println("Enter quantity of Milk\n Milk has buy2get1 offer, eg:1");
                     double quantity2 = scanner.nextDouble();
-                    Item item2 = new Item("MILK", quantity2, 50);
-                    items.add(item2);
+                    Item milk = new Item("MILK", quantity2, 50);
+                    items.add(milk);
                 }
                 case "NEWSPAPER" -> {
                     System.out.println("Enter quantity of Newspaper, eg:1");
                     double quantity3 = scanner.nextDouble();
-                    Item item3 = new Item("NEWSPAPER", quantity3, 10);
-                    items.add(item3);
+                    Item newspaper = new Item("NEWSPAPER", quantity3, 10);
+                    items.add(newspaper);
                 }
                 case "EXIT" -> System.out.println("Exit to checkout");
                 default -> System.out.println("Enter valid input");

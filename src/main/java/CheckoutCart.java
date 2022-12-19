@@ -13,14 +13,19 @@ public class CheckoutCart {
     }
     
     public void offerAppliedOnMilk(){
+        double count=0;
+        int noOfMilk=0;
         for (Item i: items) {
-            if (i.name.equalsIgnoreCase("milk") && i.quantity == 2) {
-                System.out.println("Buy two get one offer applied on Milk");
-                Item item4= new Item("milk",1,0);
-                items.add(item4);
-                break;
+            if (i.getName().equalsIgnoreCase("milk")) {
+                count += i.getQuantity();
             }
         }
+        if (count>=2) {
+            noOfMilk = (int) (count/2);
+            Item item4 = new Item("milk", noOfMilk, 0);
+            items.add(item4);
+        }
+        System.out.println("Buy two get one offer applied on Milk, added " +noOfMilk+" to cart");
 
     }
     public void calculateTotal(){
@@ -35,8 +40,6 @@ public class CheckoutCart {
         }
         System.out.println("Total Amount to be paid "+total);
         return total;
-
-
     }
     
     public void checkout(){
@@ -53,8 +56,6 @@ public class CheckoutCart {
     }
     
     public void checkoutSuccessful(){
-        Wallet wallet = new Wallet();
-        double amountInWallet=wallet.spendMoney(amountToPay);
         System.out.println("Checkout success, Wallet balance after checkout "+amountInWallet);
     }
     
@@ -66,7 +67,5 @@ public class CheckoutCart {
         if (input.equalsIgnoreCase("y")||input.equalsIgnoreCase("yes"))
             wallet.addMoney(500);
     }
-
-    
 }
 
