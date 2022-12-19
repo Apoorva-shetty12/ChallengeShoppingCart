@@ -1,9 +1,12 @@
 
 import java.util.List;
+import java.util.Scanner;
 
 public class CheckoutCart {
     List<Item> items;
     double total;
+    double amountInWallet;
+    double amountToPay;
 
     public CheckoutCart(List<Item> items) {
         this.items = items;
@@ -34,6 +37,34 @@ public class CheckoutCart {
         return total;
 
 
+    }
+    
+    public void checkout(){
+        offerAppliedOnMilk();
+        calculateTotal();
+        amountToPay=offerAppliedOnTotal();
+        Wallet wallet = new Wallet(500);
+        amountInWallet=wallet.spendMoney(amountToPay);
+        if(amountInWallet==-1){
+            System.out.println("Insufficient balance");
+            checkoutFailForInsufficientBalance();
+        }
+        else checkoutSuccessful();
+    }
+    
+    public void checkoutSuccessful(){
+        Wallet wallet = new Wallet();
+        double amountInWallet=wallet.spendMoney(amountToPay);
+        System.out.println("Checkout success, Wallet balance after checkout "+amountInWallet);
+    }
+    
+    public void checkoutFailForInsufficientBalance(){
+        System.out.println("Add Rs.500 to wallet?Y/N");
+        Scanner scanner = new Scanner(System.in);
+        String input=scanner.nextLine();
+        Wallet wallet = new Wallet();
+        if (input.equalsIgnoreCase("y")||input.equalsIgnoreCase("yes"))
+            wallet.addMoney(500);
     }
 
     

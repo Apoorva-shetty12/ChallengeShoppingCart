@@ -3,47 +3,49 @@ import java.util.List;
 import java.util.Scanner;
 
 public class ShoppingCart {
-    public static void main(String args[]){
+    public static void main(String[] args){
         List<Item> items = new ArrayList<>();
         Scanner scanner = new Scanner(System.in);
-        Wallet wallet = new Wallet();
-        wallet.addMoney(500);
-        System.out.println("Welcome to Shopping\n");
-        int input;
-        do
-        {
-            System.out.println("Available Items in shop\n 1. Apple\n 2. Milk\n 3. Newspaper \n " +
-                    "4. Exit and Calculate total \n enter your option");
-            input = scanner.nextInt();
-            switch (input){
-                case 1: Item item1 = new Item("Apple",2,100);
-                        items.add(item1);
-                        break;
-                case 2: Item item2 = new Item("Milk",2,50);
-                        items.add(item2);
-                        break;
-                case 3: Item item3 = new Item("Newspaper",2,10);
-                        items.add(item3);
-                        break;
-                case 4: System.out.println("Exit to checkout");
-                        break;
-                default:
-                    System.out.println("Enter valid input");
 
+        //wallet.addMoney(500);
+        System.out.println("Welcome to Shopping\n");
+        String input;
+        do{
+            System.out.println("""
+                    Available Items in shop
+                     1. Apple
+                     2. Milk
+                     3. Newspaper\s
+                     4. Type "exit" to exit and calculate total\s
+                     enter your option""");
+            input = scanner.nextLine();
+            switch (input.toUpperCase()) {
+                case "APPLE" -> {
+                    System.out.println("Enter quantity of Apple, eg:1");
+                    double quantity1 = scanner.nextDouble();
+                    Item item1 = new Item("APPLE", quantity1, 100);
+                    items.add(item1);
+                }
+                case "MILK" -> {
+                    System.out.println("Enter quantity of Milk\n Milk has buy2get1 offer, eg:1");
+                    double quantity2 = scanner.nextDouble();
+                    Item item2 = new Item("MILK", quantity2, 50);
+                    items.add(item2);
+                }
+                case "NEWSPAPER" -> {
+                    System.out.println("Enter quantity of Newspaper, eg:1");
+                    double quantity3 = scanner.nextDouble();
+                    Item item3 = new Item("NEWSPAPER", quantity3, 10);
+                    items.add(item3);
+                }
+                case "EXIT" -> System.out.println("Exit to checkout");
+                default -> System.out.println("Enter valid input");
             }
 
-        }while(input!= 4);
+        }while(!input.equalsIgnoreCase("EXIT"));
 
         CheckoutCart checkoutCart = new CheckoutCart(items);
-        checkoutCart.offerAppliedOnMilk();
-        checkoutCart.calculateTotal();
-        double amountToPay= checkoutCart.offerAppliedOnTotal();
-
-        double amountInWallet=wallet.spendMoney(amountToPay);
-        if(amountInWallet==-1){
-            System.out.println("Insufficient balance");
-        }
-        else System.out.println("Wallet balance after checkout"+amountInWallet);
+        checkoutCart.checkout();
 
     }
 }
