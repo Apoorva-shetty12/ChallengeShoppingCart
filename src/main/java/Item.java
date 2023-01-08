@@ -1,9 +1,14 @@
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+
+@Getter
+@AllArgsConstructor
 public class Item {
     String name;
     double quantity;
     double price;
 
-    public Item(String name, double quantity, double price) {
+/*    public Item(String name, double quantity, double price) {
         this.name = name;
         this.quantity = quantity;
         this.price = price;
@@ -31,5 +36,5 @@ public class Item {
 
     public void setPrice(double price) {
         this.price = price;
-    }
+    } */
 }

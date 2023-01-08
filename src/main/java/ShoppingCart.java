@@ -8,6 +8,8 @@ public class ShoppingCart {
         Scanner scanner = new Scanner(System.in);
 
         //wallet.addMoney(500);
+
+        //1. separate checkout cart, 2. lombok lib
         System.out.println("Welcome to Shopping\n");
         String input;
         do{
@@ -19,7 +21,7 @@ public class ShoppingCart {
                      4. Type "exit" to exit and calculate total\s
                      enter your option""");
             input = scanner.nextLine();
-            switch (input.toUpperCase()) {
+            switch (input.toUpperCase()) { // better implementation lookup 
                 case "APPLE" -> {
                     System.out.println("Enter quantity of Apple, eg:1");
                     double quantity1 = scanner.nextDouble();
