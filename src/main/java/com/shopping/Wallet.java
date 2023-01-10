@@ -1,3 +1,5 @@
+package com.shopping;
+
 public class Wallet {
     double moneyInWallet;
 

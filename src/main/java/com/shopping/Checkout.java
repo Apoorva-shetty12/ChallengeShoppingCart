@@ -1,28 +1,37 @@
+package com.shopping;
 
 import java.util.List;
 import java.util.Scanner;
 
-public class CheckoutCart {
+
+public class Checkout {
     List<Item> items;
     double total;
     double amountInWallet;
     double amountToPay;
     Discount discount=new Discount();
+    final int discountPercentage=5;
+    int discountAmount=100;
 
-    public CheckoutCart(List<Item> items) {
+    public Checkout(List<Item> items) {
         this.items = items;
     }
-    
+
+    public Checkout() {
+
+    }
+
+
     public void calculateTotal(){
         for (Item i: items) {
-            total+=(i.getPrice()*i.getQuantity());
+            total=total+(i.getPrice()*i.getQuantity());
         }
     }
     
     public void checkout(){
-        discount.offerAppliedOnMilk(items);
+        discount.offerAppliedOnItem(items, "milk");
         calculateTotal();
-        amountToPay=discount.offerAppliedOnTotal(total);
+        amountToPay=discount.offerAppliedOnTotal(total, discountAmount, discountPercentage);
         Wallet wallet = new Wallet(500);
         amountInWallet=wallet.spendMoney(amountToPay);
         if(amountInWallet==-1){
@@ -33,7 +42,7 @@ public class CheckoutCart {
     }
     
     public void checkoutSuccessful(){
-        System.out.println("Checkout success, Wallet balance after checkout "+amountInWallet);
+        System.out.println("Checkout success, com.shopping.Wallet balance after checkout "+amountInWallet);
     }
     
     public void checkoutFailForInsufficientBalance(){
@@ -43,6 +52,15 @@ public class CheckoutCart {
         Wallet wallet = new Wallet();
         if (input.equalsIgnoreCase("y")||input.equalsIgnoreCase("yes"))
             wallet.addMoney(500);
+    }
+
+    public void printItems(List<Item> items) {
+        for(Item i: items){
+            System.out.println("Item Name: "+i.getName());
+            System.out.println("Item Quantity: "+i.getQuantity());
+            System.out.println("Item Price: "+i.getPrice());
+
+        }
     }
 }
 

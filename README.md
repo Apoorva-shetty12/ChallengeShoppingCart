@@ -5,7 +5,7 @@
 2. These items could be added to the shopping cart
 3. The customer has an e-wallet
 4. Customer purchases items and pays by e-wallet
-5. Wallet Provider is offering a discount of 5% if the cost of cost is >= 100
+5. com.shopping.Wallet Provider is offering a discount of 5% if the cost of cost is >= 100
 6. The shop is running with an offer to buy 2 liters of milk and get 1 free.
 
 # Solution
@@ -15,4 +15,4 @@
 4. Amount to be paid is deducted from the user's wallet, upon insuffient balance user is asked to add default amount(Rs.500) to wallet and procced to checkout.
 
 # Execution
-1. Clone the project and proceed to run from ShoppingCart.java
+1. Clone the project and proceed to run from com.shopping.CartDriver.java
